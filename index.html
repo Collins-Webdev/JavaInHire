@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="icon" sizes="192x192" href="/img/OIP.jpeg">
+    <link rel="shortcut icon" href="/img/OIP1.jpeg" type="image/x-icon"/>
+   <link rel="apple-touch-icon" href="/img/OIP1.jpeg" type="image/x-icon"/>
+    
+
+    <title>JavaInHire - Votre tremplin vers l'emploi Java</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --accent: #7952b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #e9ecef);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1a237e, #4b79a1);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 1rem;
+            background: rgba(26, 35, 126, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--warning);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--warning);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientAnimation 5s infinite alternate;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--light), white);
+            color: var(--dark);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .features {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover:before {
+            opacity: 1;
+        }
+
+        .feature-card:hover .feature-icon,
+        .feature-card:hover h3,
+        .feature-card:hover p {
+            color: white;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .feature-card p {
+            color: var(--secondary);
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--warning);
+            color: var(--dark);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .how-it-works {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f5f7fa, #e9ecef);
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            z-index: 1;
+        }
+
+        .step-number:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+        }
+
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -30px;
+            width: 2px;
+            background: var(--light);
+        }
+
+        .step-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex-grow: 1;
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .step-content p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(90deg, #1a237e, #4b79a1);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .contact {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            background: rgba(0, 123, 255, 0.1);
+            margin: 0 auto 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: -100px;
+            right: 20px;
+            background: white;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            transition: bottom 0.5s ease;
+        }
+
+        .notification.show {
+            bottom: 20px;
+        }
+
+        .notification-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .notification-content h3 {
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .notification-content p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-button {
+            float: right;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-actions {
+            text-align: right;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease;
+        }
+
+        .floating {
+            animation: floating 3s infinite ease-in-out;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(90deg, #1a237e, #4b79a1);
+                padding: 1rem;
+                transform: translateY(-200%);
+                transition: transform 0.3s ease;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                margin: 0 auto 1rem;
+            }
+            
+            .step:not(:last-child):after {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                margin: 0.5rem 0;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-java"></i> JavaInHire
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#features">Fonctionnalités</a></li>
+                        <li><a href="#how-it-works">Comment ça marche</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="https://us-east-1xsabaucbj.auth.us-east-1.amazoncognito.com/login?client_id=7sobukpqbbd431ucar9h1af6va&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fcollins-haya-portfolio.netlify.app%2F" target="_blank"  id="loginBtn">Connexion</a></li>
+                        <li><a href="https://us-east-1xsabaucbj.auth.us-east-1.amazoncognito.com/signup?client_id=7sobukpqbbd431ucar9h1af6va&redirect_uri=https%3A%2F%2Fcollins-haya-portfolio.netlify.app%2F&response_type=code&scope=email+openid+phone" target="_blank"  id="registerBtn">Inscription</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1>Propulsez votre carrière de développeur Java</h1>
+                    <p>JavaInHire est une plateforme spécialisée qui connecte les développeurs Java débutants et intermédiaires avec les meilleures opportunités professionnelles, tout en offrant des outils d'analyse et de gestion de candidature avancés.</p>
+                    <div>
+                        <a href="https://us-east-1xsabaucbj.auth.us-east-1.amazoncognito.com/login?client_id=7sobukpqbbd431ucar9h1af6va&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fcollins-haya-portfolio.netlify.app%2F" target="_blank" class="btn btn-primary" id="getStartedBtn"><i class="fas fa-rocket"></i> Commencer</a>
+                        <a href="#features" class="btn btn-secondary"><i class="fas fa-info-circle"></i> En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Fonctionnalités Clés</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in" style="animation-delay: 0.1s">
+                        <div class="feature-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <h3>Offres Ciblées</h3>
+                        <p>Accédez à des offres exclusivement pour développeurs Java avec moins de 3 ans d'expérience, parfaitement adaptées à votre profil.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in" style="animation-delay: 0.2s">
+                        <div class="feature-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Redirection Directe</h3>
+                        <p>Accédez directement aux offres sur leur site d'origine sans intermédiaire pour postuler rapidement et efficacement.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in" style="animation-delay: 0.3s">
+                        <div class="feature-icon">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <h3>Favoris et Suivi</h3>
+                        <p>Marquez les offres comme favorites ou déjà consultées pour organiser efficacement votre recherche d'emploi.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in" style="animation-delay: 0.4s">
+                        <span class="coming-soon">Bientôt</span>
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Optimisation de CV</h3>
+                        <p>Analysez la correspondance entre votre CV et les offres d'emploi avec des recommandations précises pour passer les filtres ATS.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in" style="animation-delay: 0.5s">
+                        <span class="coming-soon">Bientôt</span>
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Tableau de Bord</h3>
+                        <p>Suivez vos candidatures avec des statistiques détaillées sur le nombre d'envois, les entretiens, et le statut de chaque démarche.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in" style="animation-delay: 0.6s">
+                        <span class="coming-soon">Bientôt</span>
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Recherche Avancée</h3>
+                        <p>Utilisez notre moteur de recherche performant basé sur Elasticsearch pour trouver les offres qui correspondent exactement à vos critères.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Comment Ça Marche</h2>
+                <div class="steps">
+                    <div class="step fade-in" style="animation-delay: 0.1s">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h3>Créez votre compte</h3>
+                            <p>Inscrivez-vous gratuitement sur JavaInHire pour accéder à l'ensemble des fonctionnalités de la plateforme.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step fade-in" style="animation-delay: 0.2s">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h3>Explorez les offres d'emploi</h3>
+                            <p>Parcourez les offres d'emploi Java spécialement sélectionnées pour les développeurs avec moins de 3 ans d'expérience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step fade-in" style="animation-delay: 0.3s">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h3>Optimisez votre CV</h3>
+                            <p>Utilisez nos outils d'analyse pour améliorer votre CV et augmenter vos chances de succès (bientôt disponible).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step fade-in" style="animation-delay: 0.4s">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h3>Postulez directement</h3>
+                            <p>Accédez directement à l'offre sur son site d'origine et postulez sans intermédiaire.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step fade-in" style="animation-delay: 0.5s">
+                        <div class="step-number"></div>
+                        <div class="step-content">
+                            <h3>Suivez vos candidatures</h3>
+                            <p>Gérez et suivez l'avancement de vos candidatures grâce au tableau de bord statistique (bientôt disponible).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2 class="fade-in">Prêt à booster votre recherche d'emploi ?</h2>
+                <p class="fade-in">Inscrivez-vous gratuitement dès maintenant pour découvrir toutes les fonctionnalités de JavaInHire et donnez un coup d'accélérateur à votre carrière de développeur Java.</p>
+                <div class="cta-buttons">
+                    <a href="https://us-east-1xsabaucbj.auth.us-east-1.amazoncognito.com/login?client_id=7sobukpqbbd431ucar9h1af6va&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fcollins-haya-portfolio.netlify.app%2F" target="_blank" class="btn btn-secondary" id="signUpBtn"><i class="fas fa-user-plus"></i> S'inscrire Gratuitement</a>
+                    <a href="#features" class="btn btn-primary"><i class="fas fa-info-circle"></i> Découvrir les Fonctionnalités</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contactez-nous</h2>
+                <div class="contact-cards">
+                    <div class="contact-card fade-in" style="animation-delay: 0.1s">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Pour une réponse rapide à vos questions</p>
+                        <a href="https://wa.me/22953043748" target="_blank">Discuter sur WhatsApp</a>
+                    </div>
+                    
+                    <div class="contact-card fade-in" style="animation-delay: 0.2s">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>Pour toutes vos demandes détaillées</p>
+                        <a href="mailto:collinshaya@gmail.com">Envoyez-nous un email pour toute question ou suggestion.</a>
+                    </div>
+                    
+                    <div class="contact-card fade-in" style="animation-delay: 0.3s">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p>Pour discuter et rester connectés</p>
+                        <a href="https://www.linkedin.com/in/collins-haya-788a5a232/" target="_blank">Connectons-nous</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fab fa-java"></i> JavaInHire
+                </div>
+                <p>La plateforme qui propulse votre carrière de développeur Java</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Collins-Webdev/JavaInHire"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 JavaInHire. Tous droits réservés.
+                </div>
+            </div>
+        </div>
+
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    });
+</script>
+
+
+
+    </footer>
+    </body>
+    </html>
