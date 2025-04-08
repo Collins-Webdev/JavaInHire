@@ -1,4 +1,3 @@
----
 
 # **📊 Dashboard JavaInHire - Documentation Technique**
 
